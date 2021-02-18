@@ -1,52 +1,6 @@
-// CLASES, POLIMORFISMO, HERENCIA Y MAS
 
-class Espada{
-
-
-
-
-    //Constructor de la clase espada con sus propiedades
-    constructor(material){
-        this.material = material;
-    }
-    atacar(){
-        
-    }
-    parry(){
-
-    }
-
-        //Set Y Get
-
-        //Set para nuestra espada
-        set setMaterial(material){
-            this.material = material;
-            switch(material){
-                case "Madera":
-                    this.info[0] = (this.getDano+5);
-                    break;
-                case "Piedra":
-                    this.info[0] = (this.getDani+10);
-                    break;
-                case "Hierro":
-                    this.info[0] = (this.getDano+15);
-                    break;
-                case "Diamante":
-                    this.info[0] = (this.getDano+20);
-                    break;
-
-            }
-        }
-        //Get para nuestra espada
-        get getMaterial(material){
-            return this.material;
-        }
-}
-
-
-/*
-
- class PlanosDeLaEspada{
+    
+    class PlanosDeLaEspada{
         constructor(material, durabilidad, efecto){
             // this.bonus = null;
             this.dano = 10;
@@ -150,5 +104,3 @@ class Espada{
     console.log(obj3.atacar());
     console.log(obj3.atacar());
     console.log(obj3.atacar());
-
-*/
