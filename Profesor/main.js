@@ -2,48 +2,33 @@
     
     class PlanosDeLaEspada{
         constructor(material, durabilidad, efecto){
-            // this.bonus = null;
             this.dano = 10;
             this.material = material;
             this.info = [];
             this.setMaterial = material;
             this.setDurabilidad = durabilidad;
             this.info.push(this.getDano,durabilidad,efecto);
-            // console.log(this.info);
-        
         }
         atacar(){
             let durabilidad = this.getDurabilidad;
-            let info = "";
-            // if(this.getBonus!=null){
-            //     let bono = this.getBonus;
-            //     this.setBonus = bono+1;
-            // }
+            let info = ``;
             if(durabilidad<=0 && this.getMaterial!=null){
                 this.setMaterial = null;
-                info = `'${this.material}' Daño realizado ${this.info[0]} Durabilidad 'exploto' Efecto al enemigo ${this.info[3]}`;
+                info = `Daño realizado ${this.info[0]} 'Perdiste la espada' Efecto al enemigo ${this.info[3]}`;
             }else if (durabilidad>0){
                 durabilidad--;
                 info = `'${this.material}' Daño realizado ${this.info[0]} Durabilidad ${this.info[2]} / ${this.getDurabilidad} Efecto al enemigo ${this.info[3]}`;
                 this.setDurabilidad = durabilidad;
             }else{
-                info = `'${this.material}' golpeo con la mano`;
+                info = `golpeo con la mano`;
             }
+            this.setatacar = this.info[3];
             return info;
         }
         defender(){
 
         }
-        // set setBonus(bonus){
-        //     if(bonus!=null){
-        //         this.bonus = bonus;
-        //     }else{
-        //         this.bonus = '';
-        //     }
-        // }
-        // get getBonus(){
-        //     return this.bonus;
-        // }
+
         set setDurabilidad(durabilidad){
             this.durabilidad = durabilidad;
         }
@@ -75,32 +60,60 @@
             return this.material;
         }
     }
-    class EspadaMadera extends PlanosDeLaEspada{
+    class AcumulacionEfectos extends PlanosDeLaEspada{
         constructor(material, durabilidad, efecto){
-            super(material, durabilidad, efecto);
-            // this.setBonus = null;
+            super(material, durabilidad, null);
+            this.setbonus = 0;
+            this.setefecto = efecto;
+        }
+        set setefecto(efecto){
+            this.efecto = efecto;
+        }
+        get getefecto(){
+            return this.efecto;
+        }
+        set setbonus(bonus){
+            let bono = bonus;
+            bono++;
+            this.bonus = bono;
+        }
+        get getbonus(){
+            return this.bonus;
+        }
+        get getatacar(){
+            this.info[3] = `${this.getefecto} ${this.getbonus}`;
+            this.setbonus = this.getbonus;
+            return this.atacar();
         }
     }
-    class EspadaPiedra extends EspadaMadera{
+    class EspadaPiedra extends AcumulacionEfectos{
         constructor(material, durabilidad, efecto){
             super(material, durabilidad, efecto);
-            // this.setBonus = 1;
         }
     }
-    class EspadaHierro extends EspadaPiedra{
+    class EspadaHierro extends AcumulacionEfectos{
         constructor(material, durabilidad, efecto){
             super(material, durabilidad, efecto);
-            // this.setBonus = 1;
         }
 
     }
-    const obj = new EspadaMadera("Madera",2,"");
+    class EspadaMadera extends AcumulacionEfectos{
+        constructor(material, durabilidad, efecto){
+            super(material, durabilidad, efecto);
+        }
+    }
+
+    const obj = new EspadaMadera("Madera",5,'Naturaleza');
     const obj2 = new EspadaHierro("Hierro",20,"Infeccion");
     const obj3 = new EspadaPiedra("Piedra",80,"Lentitud");
-    console.log(obj.atacar());
-    console.log(obj.atacar());
-    console.log(obj2.atacar());
-    console.log(obj2.atacar());
-    console.log(obj3.atacar());
-    console.log(obj3.atacar());
-    console.log(obj3.atacar());
+    console.log(obj.getatacar);
+    console.log(obj.getatacar);
+    console.log(obj.getatacar);
+    console.log(obj.getatacar);
+    console.log(obj2.getatacar);
+    console.log(obj2.getatacar);
+    console.log(obj3.getatacar);
+    console.log(obj3.getatacar);
+    console.log(obj3.getatacar);
+    console.log(obj3.getatacar);
+    console.log(obj3.getatacar);
